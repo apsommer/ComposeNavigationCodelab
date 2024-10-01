@@ -32,6 +32,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.theme.RallyTheme
@@ -68,10 +69,17 @@ fun NavHostController.navigateSingleTopTo(route: String) =
 @Composable
 fun RallyApp() {
     RallyTheme {
-        var currentScreen: RallyDestination by remember { mutableStateOf(Overview) }
 
         // create navigation controller
         val navController = rememberNavController()
+
+        // get current destination from backstack
+        val currentBackStack by navController.currentBackStackEntryAsState()
+        val currentDestination = currentBackStack?.destination
+
+        // match destination id with screen id
+        val currentScreen = rallyTabRowScreens
+            .find { it.route == currentDestination?.route } ?: Overview
 
         Scaffold(
             topBar = {
