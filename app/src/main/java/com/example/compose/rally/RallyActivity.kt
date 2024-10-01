@@ -28,6 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -50,7 +51,19 @@ class RallyActivity : ComponentActivity() {
 
 // helper extension, since entire app is single top
 fun NavHostController.navigateSingleTopTo(route: String) =
-    this.navigate(route) { launchSingleTop = true }
+    this.navigate(route) {
+
+        // only one copy of each destination is on stack
+        launchSingleTop = true
+
+        // state must be saved in either PopUpToBuilder.saveState of popUpToSaveState to be restored
+        restoreState = true
+
+        // back button from all destination navigates to start destination
+        popUpTo(this@navigateSingleTopTo.graph.findStartDestination().id) {
+            saveState = true
+        }
+    }
 
 @Composable
 fun RallyApp() {
