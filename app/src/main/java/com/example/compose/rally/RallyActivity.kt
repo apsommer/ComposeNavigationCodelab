@@ -29,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.theme.RallyTheme
@@ -70,13 +71,16 @@ fun RallyApp() {
                 startDestination = Overview.route,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                // builder parameter will be defined here as the graph
+                composable(route = Overview.route) {
+                    Overview.screen()
+                }
+                composable(route = Accounts.route) {
+                    Accounts.screen()
+                }
+                composable(route = Bills.route) {
+                    Bills.screen()
+                }
             }
-
-            Box(Modifier.padding(innerPadding)) {
-                currentScreen.screen()
-            }
-
         }
     }
 }
