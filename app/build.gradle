@@ -106,6 +106,9 @@ dependencies {
     // Compose testing dependencies
     androidTestImplementation "androidx.compose.ui:ui-test-junit4"
     debugImplementation "androidx.compose.ui:ui-test-manifest"
+
+    // navigation
+    implementation "androidx.navigation:navigation-compose:{latest_version}"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
