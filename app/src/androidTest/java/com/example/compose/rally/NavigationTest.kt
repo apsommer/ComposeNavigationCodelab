@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import junit.framework.TestCase.fail
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -17,21 +18,23 @@ class NavigationTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @Test
-    fun rallyNavHost_verifyOverviewStartDestination() {
+    @Before
+    fun setupRallyNavHost() {
         composeTestRule.setContent {
 
             // create test navigation controller
             testNavController = TestNavHostController(LocalContext.current)
 
             // create test "navigator" to crawl composables
-            testNavController.navigatorProvider.addNavigator(
-                ComposeNavigator()
-            )
+            testNavController.navigatorProvider.addNavigator(ComposeNavigator())
 
             RallyNavHost(navController = testNavController)
         }
+    }
 
+    @Test
+    fun rallyNavHost_verifyOverviewStartDestination() {
+        
         composeTestRule
             .onNodeWithContentDescription("Overview Screen")
             .assertIsDisplayed()
