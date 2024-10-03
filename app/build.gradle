@@ -109,6 +109,9 @@ dependencies {
 
     // navigation
     implementation "androidx.navigation:navigation-compose:2.8.1"
+
+    // navigation testing
+    androidTestImplementation "androidx.navigation:navigation-testing:2.8.1"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
