@@ -66,11 +66,6 @@ fun NavHostController.navigateSingleTopTo(route: String) =
 
         // state must be saved in either PopUpToBuilder.saveState of popUpToSaveState to be restored
         restoreState = true
-
-        // back button from all destination navigates to start destination
-//        popUpTo(this@navigateSingleTopTo.graph.findStartDestination().id) {
-//            saveState = true
-//        }
     }
 
 // helper extension, navigate to single account
