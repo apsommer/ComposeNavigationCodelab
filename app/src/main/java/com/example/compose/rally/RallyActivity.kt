@@ -78,7 +78,6 @@ fun NavHostController.navigateSingleAccount(accountType: String) {
     this.navigateSingleTopTo("${SingleAccount.route}/$accountType")
 }
 
-
 @Composable
 fun RallyApp() {
     RallyTheme {
