@@ -37,6 +37,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.example.compose.rally.ui.accounts.AccountsScreen
 import com.example.compose.rally.ui.accounts.SingleAccountScreen
 import com.example.compose.rally.ui.bills.BillsScreen
@@ -130,6 +131,7 @@ fun RallyApp() {
                 }
                 composable(
                     route = SingleAccount.routeWithArgs,
+                    deepLinks = SingleAccount.deepLinks,
                     arguments = SingleAccount.arguments) { navBackStackEntry ->
 
                     // retrieve argument from preceding destination
